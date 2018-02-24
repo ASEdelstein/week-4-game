@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Homework 4 Celtic Adventure</title>
+    <!-- <link rel="stylesheet" href="reset.css"> -->
+    <link rel="stylesheet" type="text/css" href="assets/css/reset.css">
+    
+    <!-- jQuery library -->
+    <script src="https://code.jquery.com/jquery-3.1.1.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="assets/css/style.css">
+  </head>
+  <body>
+
+  <div class="container">
+    <div class="row">
+        <div class="col-xs-12">
+          <h1>Welcome to the Celtic Realm!</h1>
+          <h2>Your adventurer has <span id="winCount">0</span> portals open and <span id="lossCount">0</span> portals lost.</h2>
+
+          <p>You have four Celtic Tokens, shown below. By clicking on a token, you will choose a symbol that has a varying worth.</p>
+
+          <p>Your adventurer wins by choosing the exact worth of each token and opens the portal.</p>
+
+          <p>Your adventurer loses if you do not get the value correct for the total worth of each token and the portal door closes.</p>
+
+          <p>The value for each symbol is hidden from you - so you have to use strategy to discover the value of each token and get your adventurer through the realm.</p>
+
+          <p>When you begin a new adventure, each of your tokens will have a different value.</p>
+
+          <p>Please wait for the Portal Counter to Set.</p>
+
+          <h2><span id="doorsToOpen"></span> <span id="DoorsToGo"></span></h2>
+
+          <h3 id="clicktoBegin"></h3>
+          </div>
+    </div>
+
+    <!-- Celtic Panel -->
+        <div class="row">
+            <div class="col-xs-6 col-sm-3">
+              <button id="Horses" class="btn btn-success" value="Horses"><img src="assets/images/Celtic Horse.jpg"></button>
+              <br>
+            </div>
+            <div class="col-xs-6 col-sm-3">
+              <button id="Fish" class="btn btn-success" value="Fish"><img src="assets/images/Celtic Fish.jpg"></button>
+              <br>
+            </div>
+            <div class="col-xs-6 col-sm-3">
+              <button id="Tree" class="btn btn-success" value="Tree"><img src="assets/images/Celtic Tree of Life.jpg"></button>
+              <br>
+            </div>
+            <div class="col-xs-6 col-sm-3">
+              <button id="Wolf" class="btn btn-success" value="Wolf"><img src="assets/images/Celtic Wolf.jpg"></button>
+              <br>
+            </div>
+        </div>
+    </div>
+
+<script>
+    $(document).ready(function(){
+      // the instructions require a random number "between 19 - 120"
+      // the variable tokenValue gives a number x, such that 20 <= x <= 119,
+      // which is equivalent to a number x such that 19 < x < 120.
+      var tokenValue = 0;
+      var tokenHorses = {
+        objType: "token",
+        name: "Horses",
+        objDescriptor: "Horses's info ... ",
+        portalsOpened: 0,
+        totalDoors: 0,
+        showInfo: function() {
+          console.log(this.objDescriptor + this.totalDoors);
+        }
+      };
+      var tokenFish = {
+        objType: "token",
+        name: "Fish",
+        objDescriptor: "Fish's info ... ",
+        portalsOpened: 0,
+        totalDoors: 0,
+        showInfo: function() {
+          console.log(this.objDescriptor + this.totalDoors);
+        }
+      };
+      var tokenTree = {
+        objType: "token",
+        name: "Tree",
+        objDescriptor: "Tree's info ... ",
+        portalsOpened: 0,
+        totalDoors: 0,
+        showInfo: function() {
+          console.log(this.objDescriptor + this.totalDoors);
+        }
+      };
+      var tokenWolf = {
+        objType: "token",
+        name: "Wolf",
+        objDescriptor: "Wolf's info ... ",
+        portalsOpened: 0,
+        totalDoors: 0,
+        showInfo: function() {
+          console.log(this.objDescriptor + this.totalDoors);
+        }
+      };
+      tokenHorses.showInfo();
+      tokenFish.showInfo();
+      tokenTree.showInfo();
+      tokenWolf.showInfo();
+      var objectMgrr = {
+        objType: "adventurer",
+        portalsOpened: 0,
+        portalsUnOpened: 0,
+        OpenPortal: function() {
+          this.portalsOpened += 1;
+          $("#winCount").html(this.portalsOpened);
+        },
+        portalCloses: function(){
+          this.portalsUnOpened +=1;
+          $("#lossCount").html(this.portalsUnOpened);
+        }
+      }
+        // announcing the next portal (only after the first is finished)
+        var portalSetToOpen = function() {
+          $("#DoorsToGo").html("The Portal is set to open...");
+          $("#clicktoBegin").html("");
+          $("#doorsToOpen").html("");
+        }
+        // the countdown timers
+        var countDownThree = function(){
+          $("#DoorsToGo").html("<h1>In 3 ...</h1>");
+        }
+        var countDownTwo = function(){
+          $("#DoorsToGo").html("<h1>In 2 ...</h1>");
+        }
+        var countDownOne = function(){
+          $("#DoorsToGo").html("<h1>In 1 ...</h1>");
+        }
+        // starting the adventure and initializing the variables
+        var openThePortal = function() {
+          tokenValue = Math.floor((Math.random()*100))+20;
+          tokenHorses.totalDoors = Math.floor((Math.random()*100)%12)+1;
+          tokenFish.totalDoors = Math.floor((Math.random()*100)%12)+1;
+          tokenTree.totalDoors = Math.floor((Math.random()*100)%12)+1;
+          tokenWolf.totalDoors = Math.floor((Math.random()*100)%12)+1;
+          tokenHorses.showInfo();
+          tokenFish.showInfo();
+          tokenTree.showInfo();
+          tokenWolf.showInfo();
+          $("#clicktoBegin").html("Click on a token to begin the game!");
+          $("#totalDoorsToOpen").html("The portal is closing you have " + tokenValue + " doors to go.");
+          $("#DoorsToGo").html("Your adventurer has "+ tokenValue + " more doors to open!");
+        };
+        function portalToOpen() {
+          setTimeout(portalSetToOpen, 6000);
+          setTimeout(countDownThree, 12000);
+          setTimeout(countDownTwo, 13000);
+          setTimeout(countDownOne, 14000);
+          setTimeout(openThePortal, 15000);
+          clearTimeout();
+        }
+        // start the adventure!
+        portalToOpen();
+        // token buttons and their handling
+        $("button.runner").click(function() {
+          // what to do if the player clicked on Horses
+          if (this.value === "Horses") {
+            tokenValue -= tokenHorses.totalDoors;
+              // if we keep the portal open,
+              if (tokenValue === 0) {
+               $("#DoorsToGo").html(tokenHorses.name + " has kept the portal open!");
+                objectMgrr.OpenPortal();
+                portalToOpen();
+              }
+    
+              else if (tokenValue < 0) {
+               
+                $("#DoorsToGo").html("Your adventurer has " + - tokenValue + " valued the door " + tokenHorses.name + " has become lost in the realm");
+                objectMgrr.portalCloses();
+                portalToOpen();
+              }
+  
+              else {
+                $("#DoorsToGo").html("Your adventurer has "+ tokenValue + " more doors to open!");
+              }
+          }
+          // what to do if the player clicked on Fish
+          else if (this.value === "Fish") {
+            tokenValue -= tokenFish.totalDoors;
+            if (tokenValue === 0) {
+            $("#DoorsToGo").html(tokenFish.name + " has kept the portal open!");
+              objectMgrr.OpenPortal();
+              portalToOpen();
+            }
+  
+            else if (tokenValue < 0) {
+             $("#DoorsToGo").html("Your adventurer has " + - tokenValue + " valued the door and " + tokenFish.name + " has become lost in the realm!");
+             objectMgrr.portalCloses();
+             portalToOpen();
+            }
+            else {
+              $("#DoorsToGo").html("Your adventurer has "+ tokenValue + " more doors to open!");
+            }
+          }
+          // what to do if the player clicked on Tree
+          else if (this.value === "Tree") {
+            tokenValue -= tokenTree.totalDoors;
+            if (tokenValue === 0) {
+            $("#DoorsToGo").html(tokenTree.name + " has kept the portal open!");
+             objectMgrr.OpenPortal();
+              portalToOpen();
+            }
+            // if we over valued the door,
+            else if (tokenValue < 0) {
+             $("#DoorsToGo").html("Your adventurer has " + - tokenValue + " valued the door and " + tokenTree.name + " has become lost in the realm!");
+             objectMgrr.portalCloses();
+             portalToOpen();
+            }
+            else {
+              $("#DoorsToGo").html("Your adventurer has "+ tokenValue + " more doors to open!");
+            }
+          }
+          // what to do if the player clicked on Wolf
+          else if (this.value === "Wolf") {
+            tokenValue -= tokenWolf.totalDoors;
+            if (tokenValue === 0) {
+            $("#DoorsToGo").html(tokenWolf.name + " has opened the portal!");
+            objectMgrr.OpenPortal();
+            portalToOpen();
+            }
+  
+            else if (tokenValue < 0) {
+             $("#DoorsToGo").html("Your adventurer has " + - tokenValue + " valued the door and " + tokenWolf.name + "has become lost in the realm!");
+              objectMgrr.portalCloses();
+              portalToOpen();
+            }
+            else {
+              $("#DoorsToGo").html("Your adventurer has "+ tokenValue + " more doors to open!");
+            }
+          }
+        });
+      });
+
+      </script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+  </body>
+</html>
