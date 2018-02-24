@@ -4,7 +4,7 @@
     }
 
     body {
-        background-image: url(assets/images/Doorway.jpg);
+        background-image: url(...assets/images/Doorway.jpg);
         background: black;
         color:white;
       }

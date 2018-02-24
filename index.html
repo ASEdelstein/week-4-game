@@ -137,7 +137,7 @@
         var countDownOne = function(){
           $("#DoorsToGo").html("<h1>In 1 ...</h1>");
         }
-        // starting the adventure and initializing the variables
+        // starting the adventure and initializing the variables each token is random and independent of the other
         var openThePortal = function() {
           tokenValue = Math.floor((Math.random()*100))+20;
           tokenHorses.totalDoors = Math.floor((Math.random()*100)%12)+1;
@@ -152,6 +152,8 @@
           $("#totalDoorsToOpen").html("The portal is closing you have " + tokenValue + " doors to go.");
           $("#DoorsToGo").html("Your adventurer has "+ tokenValue + " more doors to open!");
         };
+
+        // setting the countdown for game action
         function portalToOpen() {
           setTimeout(portalSetToOpen, 6000);
           setTimeout(countDownThree, 12000);
@@ -244,6 +246,6 @@
 
       </script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-
+    <script type="text/javascript" src="assets/javascript/game.js"></script>
   </body>
 </html>
