@@ -40,19 +40,19 @@
     <!-- Celtic Panel -->
         <div class="row">
             <div class="col-xs-6 col-sm-3">
-              <button id="Horses" class="btn btn-success" value="Horses"><img src="assets/images/Celtic Horse.jpg"></button>
+              <button id="Horses" class="btn btn-success token" value="Horses"><img src="assets/images/Celtic Horse.jpg"></button>
               <br>
             </div>
             <div class="col-xs-6 col-sm-3">
-              <button id="Fish" class="btn btn-success" value="Fish"><img src="assets/images/Celtic Fish.jpg"></button>
+              <button id="Fish" class="btn btn-success token" value="Fish"><img src="assets/images/Celtic Fish.jpg"></button>
               <br>
             </div>
             <div class="col-xs-6 col-sm-3">
-              <button id="Tree" class="btn btn-success" value="Tree"><img src="assets/images/Celtic Tree of Life.jpg"></button>
+              <button id="Tree" class="btn btn-success token" value="Tree"><img src="assets/images/Celtic Tree of Life.jpg"></button>
               <br>
             </div>
             <div class="col-xs-6 col-sm-3">
-              <button id="Wolf" class="btn btn-success" value="Wolf"><img src="assets/images/Celtic Wolf.jpg"></button>
+              <button id="Wolf" class="btn btn-success token" value="Wolf"><img src="assets/images/Celtic Wolf.jpg"></button>
               <br>
             </div>
         </div>
@@ -163,7 +163,7 @@
         // start the adventure!
         portalToOpen();
         // token buttons and their handling
-        $("button.runner").click(function() {
+        $("button.token").click(function() {
           // what to do if the player clicked on Horses
           if (this.value === "Horses") {
             tokenValue -= tokenHorses.totalDoors;

@@ -1,9 +1,10 @@
 .container {
     font-family:"Celtic Garamond the 2nd";
-    font-weight:normal;font-style:normal;}
+    font-weight:normal;font-style:normal;
+    }
 
     body {
-        background-image: url(..assets/images/Doorway.jpg);
-        align-content: center;
-        background-size: 100%;
-    }
+        background-image: url(assets/images/Doorway.jpg);
+        background: black;
+        color:white;
+      }
