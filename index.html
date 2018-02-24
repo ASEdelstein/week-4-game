@@ -108,7 +108,7 @@
       tokenFish.showInfo();
       tokenTree.showInfo();
       tokenWolf.showInfo();
-      var objectMgrr = {
+      var objectMgr = {
         objType: "adventurer",
         portalsOpened: 0,
         portalsUnOpened: 0,
@@ -172,14 +172,14 @@
               // if we keep the portal open,
               if (tokenValue === 0) {
                $("#DoorsToGo").html(tokenHorses.name + " has kept the portal open!");
-                objectMgrr.OpenPortal();
+                objectMgr.OpenPortal();
                 portalToOpen();
               }
     
               else if (tokenValue < 0) {
                
                 $("#DoorsToGo").html("Your adventurer has " + - tokenValue + " valued the door " + tokenHorses.name + " has become lost in the realm");
-                objectMgrr.portalCloses();
+                objectMgr.portalCloses();
                 portalToOpen();
               }
   
@@ -192,13 +192,13 @@
             tokenValue -= tokenFish.totalDoors;
             if (tokenValue === 0) {
             $("#DoorsToGo").html(tokenFish.name + " has kept the portal open!");
-              objectMgrr.OpenPortal();
+              objectMgr.OpenPortal();
               portalToOpen();
             }
   
             else if (tokenValue < 0) {
              $("#DoorsToGo").html("Your adventurer has " + - tokenValue + " valued the door and " + tokenFish.name + " has become lost in the realm!");
-             objectMgrr.portalCloses();
+             objectMgr.portalCloses();
              portalToOpen();
             }
             else {
@@ -210,13 +210,13 @@
             tokenValue -= tokenTree.totalDoors;
             if (tokenValue === 0) {
             $("#DoorsToGo").html(tokenTree.name + " has kept the portal open!");
-             objectMgrr.OpenPortal();
+             objectMgr.OpenPortal();
               portalToOpen();
             }
             // if we over valued the door,
             else if (tokenValue < 0) {
              $("#DoorsToGo").html("Your adventurer has " + - tokenValue + " valued the door and " + tokenTree.name + " has become lost in the realm!");
-             objectMgrr.portalCloses();
+             objectMgr.portalCloses();
              portalToOpen();
             }
             else {
@@ -228,13 +228,13 @@
             tokenValue -= tokenWolf.totalDoors;
             if (tokenValue === 0) {
             $("#DoorsToGo").html(tokenWolf.name + " has opened the portal!");
-            objectMgrr.OpenPortal();
+            objectMgr.OpenPortal();
             portalToOpen();
             }
   
             else if (tokenValue < 0) {
              $("#DoorsToGo").html("Your adventurer has " + - tokenValue + " valued the door and " + tokenWolf.name + " has become lost in the realm!");
-              objectMgrr.portalCloses();
+              objectMgr.portalCloses();
               portalToOpen();
             }
             else {
